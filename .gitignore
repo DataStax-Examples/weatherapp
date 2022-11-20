@@ -37,4 +37,5 @@ yarn-error.log*
 
 .env*
 
-
+# dbg files
+pages/api/tester.ts

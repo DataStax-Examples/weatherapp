@@ -1,10 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 const { createClient } = require("@astrajs/collections");
 
-// type Data = {
-//     name: string
-// }
-
 export default async function handler(req, res) {
     const astraClient = await createClient({
         astraDatabaseId: process.env.ASTRA_DB_ID,
@@ -36,8 +32,6 @@ export default async function handler(req, res) {
     } else {
         cities = await citiesCollection.find({});
     }
-
-    console.log(cities['data'])
 
     res
         .status(200)
