@@ -27,7 +27,7 @@ export default async function handler(req, res) {
         const reqs = []
 
         // concurrent parallel forecast / historical data fetch
-        for (let i = 0; i < body.numDays; i++) {
+        for (let i = -body.numDays; i <= body.numDays; i++) {
             const dt = new Date(startDt)
             dt.setDate(dt.getDate() + i)
             body.forecastDate = dt.toISOString().split('T')[0]
@@ -46,7 +46,7 @@ export default async function handler(req, res) {
         // write to C* via Docs API
         forecastResponses.forEach(async r => {
             if (!r.ok) {
-                throw new Error(r.statusText)
+                console.log('Error during weatherapi fetch ' + r.statusText)
             } else {
                 const fcBody = await r.json()
                 const reqDt = fcBody['forecast']['forecastday'][0]['date']
@@ -68,7 +68,7 @@ export default async function handler(req, res) {
             }
         })
 
-        res.status(201).json({ city: body.city, details: details })
+        res.status(200).json({ city: body.city, details: details })
     }
 }
 

@@ -19,7 +19,7 @@ export default async function handler(req, res) {
         };
 
         const newMember = await citiesCollection.create(body.name, city);
-        res.status(201).json({ id: newMember.documentId, ...city });
+        res.status(201).json({ label: newMember.documentId, value: body.name });
 
         return;
     }
@@ -35,5 +35,5 @@ export default async function handler(req, res) {
 
     res
         .status(200)
-        .json(Object.keys(cities['data']).map((key) => ({ id: key, name: cities['data'][key]['name'] })));
+        .json(Object.keys(cities['data']).map((key) => ({ label: key, value: cities['data'][key]['name'] })));
 }
