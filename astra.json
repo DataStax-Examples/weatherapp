@@ -12,6 +12,6 @@
 		"name": "TimeSeries DB"
 	}],
 	"category": "apps",
-	"priority": 2,
+	"priority": 3,
 	"heroImage": "https://raw.githubusercontent.com/DataStax-Examples/weatherapp/master/hero.png"
 }
